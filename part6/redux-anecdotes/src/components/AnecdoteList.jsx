@@ -16,12 +16,15 @@ const AnecdoteList = () => {
 
   const vote = (id) => {
     console.log("vote", id);
-    dispatch(voteAnecdote(id));
-  };
+    dispatch({ type: "anecdotes/voteAnecdote", payload: { id } });
+    dispatch({ type: "notification/setNotification", payload: `You voted for '${anecdotes.find((a) => a.id === id).content}'` });
+  };setTimeout(() => {
+    dispatch({ type: "notification/closeNotification", payload: ""});
+  }, 3000);
 
   return (
     <>
-      {anecdotes
+      {[...anecdotes]
         .sort((a, b) => b.votes - a.votes)
         .map((anecdote) => (
           <div key={anecdote.id}>
