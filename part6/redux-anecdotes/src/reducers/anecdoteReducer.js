@@ -38,6 +38,8 @@ const anecdoteSlice = createSlice({
     },
 
     setAnecdotes(state, action) {
+      console.log("action.payload", action.payload);
+      console.log("state", state);
       return action.payload;
     },
   },
